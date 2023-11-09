@@ -9,6 +9,11 @@ def main(global_config, **settings):
         config.include('.routes')
         config.include('.models')
 
+        # Konfigurasi SQLAlchemy
+        engine = engine_from_config(settings, 'sqlalchemy.')
+        DBSession.configure(bind=engine)
+        Base.metadata.bind = engine
+
         #add routes
 
 
@@ -27,6 +32,7 @@ def main(global_config, **settings):
 
         config.add_route('payments', '/payments')
         config.add_route('payment', '/payments/{id}')
+    
 
         config.scan()
     return config.make_wsgi_app()
