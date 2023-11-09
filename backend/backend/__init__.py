@@ -8,5 +8,25 @@ def main(global_config, **settings):
         config.include('pyramid_jinja2')
         config.include('.routes')
         config.include('.models')
+
+        #add routes
+
+
+
+        config.add_route('products', '/products')
+        config.add_route('product', '/products/{id}')
+
+        config.add_route('orders', '/orders')
+        config.add_route('order', '/orders/{id}')
+
+        config.add_route('users', '/users')
+        config.add_route('user', '/users/{id}')
+
+        config.add_route('deliveries', '/deliveries')
+        config.add_route('delivery', '/deliveries/{id}')
+
+        config.add_route('payments', '/payments')
+        config.add_route('payment', '/payments/{id}')
+
         config.scan()
     return config.make_wsgi_app()
